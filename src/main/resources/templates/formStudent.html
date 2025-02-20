@@ -3,10 +3,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 
-    <title th:text="${titulo}"></title>
+    <title th:text="${title}"></title>
 </head>
 <body>
-<h1 th:text="${titulo}"></h1>
+<h1 th:text="${title}"></h1>
 
 <form th:action="@{${action}}" th:object="${student}" method="post">
     <!-- Campo oculto para enviar el ID del producto (se usa en actualización y eliminación) -->
@@ -18,36 +18,36 @@
     </div>
 
     <div>
-        <label for="lastName">lastName:</label>
+        <label for="lastName">Last Name:</label>
         <input type="text"  id="lastName" name="lastName" th:field="*{lastName}" required />
     </div>
 
     <div>
-        <label for="email">email:</label>
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" th:field="*{email}" required>
     </div>
 
     <div>
-        <label for="number">number:</label>
+        <label for="number">Number:</label>
         <input type="text" id="number" name="number" th:field="*{number}"  required>
     </div>
 
     <div>
-        <label for="dni">dni:</label>
+        <label for="dni">DNI:</label>
         <input type="text" id="dni" name="dni" th:field="*{dni}">
     </div>
     <div>
-        <label for="birthdate">birthdate:</label>
+        <label for="birthdate">Birthdate:</label>
         <input type="text" id="birthdate" name="birthdate" th:field="*{birthdate}">
     </div>
     <div>
-        <label for="schoolGrade">schoolGrade:</label>
+        <label for="schoolGrade">School Grade:</label>
         <input type="text" id="schoolGrade" name="schoolGrade" th:field="*{schoolGrade}">
     </div>
 
 
     <div>
-        <button type="submit" th:text="${textoBoton}"></button>
+        <button type="submit" th:text="${textButton}"></button>
         <a th:href="@{/}" style="margin-left: 10px;">Cancel</a>
     </div>
 </form>

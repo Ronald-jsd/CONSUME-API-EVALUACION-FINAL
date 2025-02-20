@@ -28,6 +28,7 @@ public class StudentController {
                 .build();
     }
 
+
     //vista para listar estudiantes
     @GetMapping("/")
     public String index(Model model) {
@@ -56,8 +57,8 @@ public class StudentController {
     //Vista del formulario
     @GetMapping("/new")
     public String newStudent(Model model) {
-        model.addAttribute("titulo", "Register Student  ");
-        model.addAttribute("textoBoton", "Register");
+        model.addAttribute("title", "Register Student  ");
+        model.addAttribute("textButton", "Register");
         model.addAttribute("action", "/save");
         model.addAttribute("student", new StudentDTO()); // Crea un nuevo objeto vacío de ProductDTO para ser utilizado en el formulario
 
@@ -80,13 +81,13 @@ public class StudentController {
     // Metodo para mostrar el formulario de edición de un producto existente
     @GetMapping("/edit/{id}")
     public String showFormToEdit(@PathVariable Long id, Model model) {
-        ResponseEntity<StudentDTO> product = this.restTemplate
+        ResponseEntity<StudentDTO> student = this.restTemplate
                 .getForEntity(this.apiUrl + '/' + id, StudentDTO.class);
-        model.addAttribute("titulo", "Edit Student");
+        model.addAttribute("title", "Edit Student");
         model.addAttribute("action", "/save");
-        model.addAttribute("textoBoton", "Save");
+        model.addAttribute("textButton", "Save");
 
-        model.addAttribute("student", product.getBody());
+        model.addAttribute("student", student.getBody());
         // Añade el producto al modelo para que se cargue en el formulario
         return "formStudent";
     }
@@ -99,9 +100,9 @@ public class StudentController {
         ResponseEntity<StudentDTO> student = this.restTemplate
                 .getForEntity(this.apiUrl + '/' + id, StudentDTO.class);
 
-            model.addAttribute("titulo", "Delete Student");
+            model.addAttribute("title", "Delete Student");
             model.addAttribute("action", "/delete/" + student.getBody().getId());
-            model.addAttribute("textoBoton", "Delete");
+            model.addAttribute("textButton", "Delete");
             model.addAttribute("student", student.getBody()); // Añade el producto al modelo para mostrar sus datos en el formulario
 
         return "formStudent";
