@@ -103,9 +103,9 @@ public class StudentController {
 
     /* Additional methods */
     void studentDetails (Model model,  String title, String action, String textButton , StudentDTO student) {
-        model.addAttribute("title", "Delete Student");
+        model.addAttribute("title", title);
         model.addAttribute("action", action);
-        model.addAttribute("textButton", "Delete");
+        model.addAttribute("textButton", textButton);
         // Añade el Student al modelo para mostrar sus datos en el formulario
         model.addAttribute("student",student);
     }
