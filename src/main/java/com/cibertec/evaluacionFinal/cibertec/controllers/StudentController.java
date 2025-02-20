@@ -15,11 +15,12 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class StudentController {
 
+    //Variable ruta de la API definido en properties
     @Value("${backend.url}")
     private String apiUrl;
 
     //DI
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
     //Constructor
     public StudentController(RestTemplateBuilder restTemplateBuilder) {
@@ -57,11 +58,13 @@ public class StudentController {
     //Vista del formulario
     @GetMapping("/new")
     public String newStudent(Model model) {
-        model.addAttribute("title", "Register Student  ");
+        studentDetails(model, "Register Student" , "Register","/save",  new StudentDTO() );
+        /*
+        model.addAttribute("title", "Register Student");
         model.addAttribute("textButton", "Register");
         model.addAttribute("action", "/save");
         model.addAttribute("student", new StudentDTO()); // Crea un nuevo objeto vacío de ProductDTO para ser utilizado en el formulario
-
+        */
         return "formStudent";
     }
 
@@ -83,11 +86,13 @@ public class StudentController {
     public String showFormToEdit(@PathVariable Long id, Model model) {
         ResponseEntity<StudentDTO> student = this.restTemplate
                 .getForEntity(this.apiUrl + '/' + id, StudentDTO.class);
-        model.addAttribute("title", "Edit Student");
+
+        studentDetails(model,"Edit Student", "/save",  "Save", student.getBody());
+        /*model.addAttribute("title", "Edit Student");
         model.addAttribute("action", "/save");
         model.addAttribute("textButton", "Save");
+        model.addAttribute("student", student.getBody());*/
 
-        model.addAttribute("student", student.getBody());
         // Añade el producto al modelo para que se cargue en el formulario
         return "formStudent";
     }
@@ -99,12 +104,13 @@ public class StudentController {
         // Realiza una solicitud GET para obtener el producto a eliminar
         ResponseEntity<StudentDTO> student = this.restTemplate
                 .getForEntity(this.apiUrl + '/' + id, StudentDTO.class);
-
+        studentDetails(model,"Delete Student", "/delete/" + student.getBody().getId(),  "Delete", student.getBody());
+          /*
             model.addAttribute("title", "Delete Student");
             model.addAttribute("action", "/delete/" + student.getBody().getId());
             model.addAttribute("textButton", "Delete");
             model.addAttribute("student", student.getBody()); // Añade el producto al modelo para mostrar sus datos en el formulario
-
+            */
         return "formStudent";
     }
 
@@ -117,18 +123,20 @@ public class StudentController {
         return "redirect:/";
     }
 
+    /* Additional methods */
+    void studentDetails (Model model,  String title, String action, String textButton , StudentDTO student) {
+        model.addAttribute("title", "Delete Student");
+        model.addAttribute("action", action);
+        model.addAttribute("textButton", "Delete");
+        model.addAttribute("student",student); // Añade el Student al modelo para mostrar sus datos en el formulario
+    }
 
-
-
-
-
-
-
-
-
-
-
-
+    void get(Long id){
+        ResponseEntity<StudentDTO> student =
+                this.restTemplate.getForEntity(
+                        this.apiUrl + '/' + id,
+                        StudentDTO.class);
+    }
 
 }
 
