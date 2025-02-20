@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+<h1 th:text="${titulo}"></h1>
+
+<form th:action="@{${action}}" th:object="${student}" method="post">
+    <!-- Campo oculto para enviar el ID del producto (se usa en actualización y eliminación) -->
+    <input type="hidden" th:field="*{id}"/>
+
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="*{name}" required>
+    </div>
+
+    <div>
+        <label for="lastName">lastName:</label>
+        <input type="text"  id="lastName" name="lastName" th:field="*{lastName}" required />
+    </div>
+
+    <div>
+        <label for="email">email:</label>
+        <input type="email" id="email" name="email" th:field="*{email}" required>
+    </div>
+
+    <div>
+        <label for="number">number:</label>
+        <input type="text" id="number" name="number" th:field="*{number}"  required>
+    </div>
+
+    <div>
+        <label for="dni">dni:</label>
+        <input type="text" id="dni" name="dni" th:field="*{dni}">
+    </div>
+    <div>
+        <label for="birthdate">birthdate:</label>
+        <input type="text" id="birthdate" name="birthdate" th:field="*{birthdate}">
+    </div>
+    <div>
+        <label for="schoolGrade">schoolGrade:</label>
+        <input type="text" id="schoolGrade" name="schoolGrade" th:field="*{schoolGrade}">
+    </div>
+
+
+    <div>
+        <button type="submit" th:text="${textoBoton}"></button>
+        <a th:href="@{/}" style="margin-left: 10px;">Cancel</a>
+    </div>
+</form>
+
+</body>
+</html>
+
