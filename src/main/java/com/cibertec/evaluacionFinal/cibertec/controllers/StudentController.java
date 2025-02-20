@@ -42,13 +42,13 @@ public class StudentController {
     @GetMapping("/{id}")
     public String findById(@PathVariable Long id, Model model) {
         // Realiza una petición GET a la API
-        ResponseEntity<StudentDTO> product =
+        ResponseEntity<StudentDTO> student =
                 this.restTemplate.getForEntity(
                         this.apiUrl + '/' + id, StudentDTO.class);
 
         // Añade el producto obtenido al modelo para que sea enviado y muestre en la vista de detalles
-        model.addAttribute("producto", product.getBody());
-        return "detalle-producto";
+        model.addAttribute("student", student.getBody());
+        return "details-student";
     }
 
 

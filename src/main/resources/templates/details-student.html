@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Student</title>
+</head>
+<body>
+<h1>Detail Student</h1>
+
+<!-- Mostrar los datos del objeto -->
+<!--    Recibo el producto con th:text y obtengo sus atributos-->
+<p><strong>ID:</strong> <span th:text="${student.id}"></span></p>
+<p><strong>Name:</strong> <span th:text="${student.name}"></span></p>
+<p><strong>Last Name:</strong> <span th:text="${student.lastName}"></span></p>
+<p><strong>Email:</strong> <span th:text="${student.email}"></span></p>
+<p><strong>Number:</strong> <span th:text="${student.number}"></span></p>
+<p><strong>Dni:</strong> <span th:text="${student.dni}"></span></p>
+<p><strong>Birthdate:</strong> <span th:text="${student.birthdate}"></span></p>
+<p><strong>School Grade:</strong> <span th:text="${student.schoolGrade}"></span></p>
+
+<!-- Botón para regresar a la lista de productos -->
+<a th:href="@{/}" class="btn btn-secondary">Go back</a>
+<!--  Redirijo a la vista principal-->
+</body>
+</html>
